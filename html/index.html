@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <script type="text/javascript" src="../js/knockout.js"></script>
+      <title>TDEE</title>
+  </head>
+  <body>
+    <div class="container" data-bind="with: Calculator">
+      <h4>TDEE: <span data-bind="text: TDEE()"></span></h4>
+    </div>
+    <script>
+    ko_model = {
+
+    }
+    </script>
+
+    <script type="text/javascript" src="../js/index.js"></script>
+    
+    <script>
+      ko.applyBindings(ko_model)
+    </script>
+  </body>
+  </html>
