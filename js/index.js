@@ -3,11 +3,11 @@
   const TDEE = ko.observable()
   const BMR = ko.observable()
 
+  const Gender = ko.observable("Male")
   const Height = ko.observable()
   const Weight = ko.observable()
   const Age = ko.observable()
-  const Gender = ko.observable("Male")
-  const TDEEMultiplier = ko.observable()
+  const BodyFat = ko.observable()
 
   const EntryView = ko.observable(true)
   const DataView = ko.observable(false)
@@ -15,10 +15,9 @@
   const Calculate = () => {
   	if(NullOrBlankCheck(Height(), "Height") || NullOrBlankCheck(Weight(), "Weight") || NullOrBlankCheck(Age(), "Age")) return
 
-  	BMR(CalculateBMR())
-	TDEE(CalculateTDEE())
+	  TDEE(CalculateTDEE())
 
-	Toggle()
+	  Toggle()
   }
 
   const CalculateBMR = () => {
@@ -44,10 +43,12 @@
 
   ko_model = {
     TDEE: TDEE,
+
+    Gender: Gender,
     Weight: Weight,
     Height: Height,
     Age: Age,
-    Gender: Gender,
+    BodyFat: BodyFat,
 
     EntryView: EntryView,
     DataView: DataView,
