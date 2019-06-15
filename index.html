@@ -9,13 +9,44 @@
 
   </head>
   <body>
-    <div class="container">
-      <h4>TDEE: <span data-bind="text: TDEE()"></span></h4>
+    <div class="container" data-bind="if: EntryView()">
+      <div class="form-group">
+        <label for="height">
+          Height: <input class="form-control" data-bind="value: Height" type="number" id="height"/>
+        </label>  
+      </div>
+
+      <div class="form-group">
+        <label for="weight">
+          Weight: <input class="form-control" data-bind="value: Weight" type="number" id="weight"/>
+        </label>  
+      </div>
+
+      <div class="form-group">
+        <label for="age">
+          Age: <input class="form-control" data-bind="value: Age" type="number" id="age"/>
+        </label>  
+      </div>
+
+      <div class="form-group">
+        <label for="gender">
+          Gender: 
+          <select class="form-control" data-bind="value: Gender" id="gender">
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </label>  
+      </div>
+
+      <button class="btn btn-primary" data-bind="click: Calculate">Calculate</button>
     </div>
 
+    <div class="container" data-bind="if: DataView()">
+      <h3>TDEE: <span data-bind="text: TDEE()"></span></h3>
 
 
-
+      <button class="btn btn-primary" data-bind="click: Toggle">Re-Calculate</button>
+    </div>
 
     <script type="text/javascript" src="js/index.js"></script>
 
