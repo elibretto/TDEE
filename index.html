@@ -1,6 +1,7 @@
 <html>
   <head>
     <script type="text/javascript" src="js/knockout.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -9,41 +10,86 @@
 
   </head>
   <body>
+    <div style="margin-bottom: 50px">
+      <div class="navbar navbar-dark bg-dark">
+        <div class="container">
+          <div class="navbar-header">
+            <div class="navbar-brand">
+              <a style="color: inherit;" href="https://elibretto.github.io/TDEE">TDEE <span>Calculator</span></a>
+            </div>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="https://elibretto.github.io/TDEE">About</a></li>
+              <li><a href="https://elibretto.github.io/TDEE">FAQ</a></li>
+              <li><a href="https://elibretto.github.io">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container" data-bind="if: EntryView()">
-      <div class="form-group">
-        <label for="height">
-          Height: <input class="form-control" data-bind="value: Height" type="number" id="height"/>
-        </label>  
-      </div>
+      <div class="row"></div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
 
-      <div class="form-group">
-        <label for="weight">
-          Weight: <input class="form-control" data-bind="value: Weight" type="number" id="weight"/>
-        </label>  
-      </div>
+          <div class="form-group" style="margin-left: 25px">
+            <label>
+              <input type="radio" value="Male" data-bind="checked: Gender" /> Male
+            </label>
+            <label>
+              <input type="radio" value="Female" data-bind="checked: Gender" style="margin-left: 15px" /> Female
+            </label>
+          </div>
 
-      <div class="form-group">
-        <label for="age">
-          Age: <input class="form-control" data-bind="value: Age" type="number" id="age"/>
-        </label>  
-      </div>
+          <div class="form-group">
+            <label for="height">
+              Height (cm): <input class="form-control" data-bind="value: Height" type="number" id="height"/>
+            </label>  
+          </div>
 
-      <div class="form-group">
-        <label for="gender">
-          Gender: 
-          <select class="form-control" data-bind="value: Gender" id="gender">
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-        </label>  
-      </div>
+          <div class="form-group">
+            <label for="weight">
+              Weight (kg): <input class="form-control" data-bind="value: Weight" type="number" id="weight"/>
+            </label>  
+          </div>
 
-      <button class="btn btn-primary" data-bind="click: Calculate">Calculate</button>
+          <div class="form-group">
+            <label for="age">
+              Age: <input class="form-control" data-bind="value: Age" type="number" id="age"/>
+            </label>  
+          </div>
+
+          <div class="form-group">
+            <label for="bf">
+              Body Fat % (optional): <input class="form-control" data-bind="value: BodyFat" type="number" id="bf"/>
+            </label>  
+          </div>
+
+          <div style="margin-left: 100px">
+            <button class="btn btn-primary" data-bind="click: Calculate">Calculate</button>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <h3>Calculate your TDEE</h3>
+
+          <p>
+            This calculator can be used to learn your <b>total daily energy expenditure (TDEE)</b>. This is a measure on how many calories you burn in one day. It will also help find other useful information like your <a href="https://en.wikipedia.org/wiki/Basal_metabolic_rate">BMR</a>, <a href="https://en.wikipedia.org/wiki/Body_mass_index">BMI</a> and some recommended <a href="https://en.wikipedia.org/wiki/List_of_macronutrients">macros</a>.
+          </p>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
     </div>
 
     <div class="container" data-bind="if: DataView()">
       <h3>TDEE: <span data-bind="text: TDEE()"></span></h3>
 
+      <div>
+
+      </div>
 
       <button class="btn btn-primary" data-bind="click: Toggle">Re-Calculate</button>
     </div>
@@ -51,4 +97,11 @@
     <script type="text/javascript" src="js/index.js"></script>
 
   </body>
-  </html>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2019 - <a href="https://elibretto.github.io" style="color: inherit;">@elibretto</a></p>
+    </div>
+  </footer>
+  
+</html>
