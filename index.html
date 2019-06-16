@@ -32,43 +32,55 @@
     <div class="container" data-bind="if: EntryView()">
       <div class="row"></div>
       <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
 
-          <div class="form-group" style="margin-left: 25px">
-            <label>
-              <input type="radio" value="Male" data-bind="checked: Gender" /> Male
+          <div class="form-group row">
+            <label class="col-md-3">Measurement:</label>
+            <label class="col-md-3">
+              <input type="radio" value="Metric" data-bind="checked: MeasurementType" style="margin-left: 20px"/> Metric
             </label>
-            <label>
-              <input type="radio" value="Female" data-bind="checked: Gender" style="margin-left: 15px" /> Female
+            <label class="col-md-3">
+              <input type="radio" value="Imperial" data-bind="checked: MeasurementType" /> Imperial
             </label>
           </div>
 
-          <div class="form-group">
-            <label for="height">
-              Height (cm): <input class="form-control" data-bind="value: Height" type="number" id="height"/>
-            </label>  
+          <div class="form-group row">
+            <label class="col-md-3">Gender:</label>
+            <label class="col-md-3">
+              <input type="radio" value="Male" data-bind="checked: Gender" style="margin-left: 20px"/> Male
+            </label>
+            <label class="col-md-3">
+              <input type="radio" value="Female" data-bind="checked: Gender" /> Female
+            </label>
           </div>
 
-          <div class="form-group">
-            <label for="weight">
-              Weight (kg): <input class="form-control" data-bind="value: Weight" type="number" id="weight"/>
-            </label>  
+          <div class="form-group row">
+            <label for="weight" class="col-md-3" style="padding-top: 5px">Weight:</label>
+            <input class="form-control col-md-6" data-bind="value: Weight, attr: {placeholder: MeasurementType() == 'Metric' ? 'kg' : 'lb'}" type="number" id="weight"/>
           </div>
 
-          <div class="form-group">
-            <label for="age">
-              Age: <input class="form-control" data-bind="value: Age" type="number" id="age"/>
-            </label>  
+          <div class="form-group row">
+            <label for="height" class="col-md-3" style="padding-top: 5px">Height:</label>
+            <!-- ko if: MeasurementType() == 'Metric' -->
+            <input class="form-control col-md-6" data-bind="value: Height" type="number" id="height" placeholder="cm"/>
+            <!-- /ko -->
+            <!-- ko if: MeasurementType() == 'Imperial' --> 
+            <select class="form-control col-md-6" data-bind="value: Height, options: ImperialHeights, optionsText: function(x) {return DisplayImp(x)}"></select>
+            <!-- /ko -->
           </div>
 
-          <div class="form-group">
-            <label for="bf">
-              Body Fat % (optional): <input class="form-control" data-bind="value: BodyFat" type="number" id="bf"/>
-            </label>  
+          <div class="form-group row">
+            <label for="age" class="col-md-3" style="padding-top: 5px">Age:</label>
+            <input class="form-control col-md-6" data-bind="value: Age" type="number" id="age"/> 
           </div>
 
-          <div style="margin-left: 100px">
+          <div class="form-group row">
+            <label for="bf" class="col-md-3" style="padding-top: 5px">Body Fat %:</label>
+            <input class="form-control col-md-6" data-bind="value: BodyFat" type="number" id="bf" placeholder="optional"/>
+          </div>
+
+          <div style="margin-left: 104px;">
             <button class="btn btn-primary" data-bind="click: Calculate">Calculate</button>
           </div>
         </div>
@@ -100,7 +112,7 @@
 
   <footer class="footer">
     <div class="container">
-      <p>© 2019 - <a href="https://elibretto.github.io" style="color: inherit;">@elibretto</a></p>
+      <p>&copy; 2019 - <a href="https://elibretto.github.io" style="color: inherit;">@elibretto</a></p>
     </div>
   </footer>
   
